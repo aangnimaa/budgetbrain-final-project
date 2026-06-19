@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${mode == 'create'} ? 'New Budget | BudgetBrain' : 'Edit Budget | BudgetBrain'">Budget</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<nav class="topbar">
+    <a class="brand" th:href="@{/dashboard}"><span class="logo">₩</span> BudgetBrain</a>
+    <div class="nav-links">
+        <a th:href="@{/dashboard}">Dashboard</a>
+        <a th:href="@{/records}">Records</a>
+        <a class="active" th:href="@{/budgets}">Budgets</a>
+        <a th:href="@{/goals}">Goals</a>
+        <form th:action="@{/logout}" method="post" class="logout-form">
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+            <button type="submit">Logout</button>
+        </form>
+    </div>
+</nav>
+
+<main class="container narrow">
+    <section class="page-heading">
+        <p class="eyebrow" th:text="${mode == 'create'} ? 'New monthly plan' : 'Update monthly plan'"></p>
+        <h1 th:text="${mode == 'create'} ? 'Create budget' : 'Edit budget'"></h1>
+        <p>Set a spending limit for one category and one month.</p>
+    </section>
+
+    <form th:action="${formAction}" th:object="${budget}" method="post" class="form-card">
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+        <div class="form-grid">
+            <div class="field">
+                <label>Category</label>
+                <select th:field="*{category}" required>
+                    <option value="">Select category</option>
+                    <option value="Food">Food</option>
+                    <option value="Transport">Transport</option>
+                    <option value="Study">Study</option>
+                    <option value="Shopping">Shopping</option>
+                    <option value="Bills">Bills</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+            <div class="field">
+                <label>Month</label>
+                <input type="month" th:field="*{month}" required>
+            </div>
+            <div class="field span-two">
+                <label>Limit Amount KRW</label>
+                <input type="number" th:field="*{limitAmount}" min="1" step="100" placeholder="300000" required>
+            </div>
+            <div class="field span-two">
+                <label>Note</label>
+                <textarea th:field="*{note}" rows="4" placeholder="Example: Food budget for June"></textarea>
+            </div>
+        </div>
+        <div class="form-actions">
+            <a class="btn btn-soft" th:href="@{/budgets}">Cancel</a>
+            <button class="btn btn-primary" type="submit" th:text="${mode == 'create'} ? 'Create Budget' : 'Save Changes'"></button>
+        </div>
+    </form>
+</main>
+</body>
+</html>

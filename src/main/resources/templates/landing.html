@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BudgetBrain | Smart Finance Tracker</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<nav class="topbar glass">
+    <a class="brand" th:href="@{/}"><span class="logo">₩</span> BudgetBrain</a>
+    <div class="nav-links">
+        <a th:href="@{/login}">Login</a>
+        <a class="btn btn-primary" th:href="@{/register}">Create Account</a>
+    </div>
+</nav>
+
+<main class="landing-shell">
+    <section class="hero">
+        <div class="hero-text">
+            <p class="eyebrow">Personal Finance Intelligence Web App</p>
+            <h1>Track money, receipts, budgets, and savings in one clean dashboard.</h1>
+            <p class="hero-copy">BudgetBrain helps students manage income, expenses, monthly budgets, receipt images, and savings goals using a secure web application built with Spring Boot, PostgreSQL, and JPA.</p>
+            <div class="hero-actions">
+                <a class="btn btn-primary" th:href="@{/register}">Start Budgeting</a>
+                <a class="btn btn-soft" th:href="@{/login}">Login</a>
+            </div>
+        </div>
+        <div class="finance-card">
+            <div class="card-head">
+                <span>June Summary</span>
+                <strong>BudgetBrain</strong>
+            </div>
+            <div class="balance-box">
+                <small>Available Balance</small>
+                <h2>₩1,245,000</h2>
+            </div>
+            <div class="mini-grid">
+                <div><span>Income</span><strong>₩2.8M</strong></div>
+                <div><span>Expenses</span><strong>₩1.5M</strong></div>
+                <div><span>Saved</span><strong>₩420K</strong></div>
+                <div><span>Budgets</span><strong>6</strong></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="feature-strip">
+        <div><strong>Auth</strong><span>Sign up, login, logout</span></div>
+        <div><strong>CRUD</strong><span>Transactions, budgets, goals</span></div>
+        <div><strong>Receipts</strong><span>Upload and display images</span></div>
+        <div><strong>Search</strong><span>Find records by keyword</span></div>
+    </section>
+</main>
+</body>
+</html>

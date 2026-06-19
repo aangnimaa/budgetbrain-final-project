@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error | BudgetBrain</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body class="auth-page">
+<div class="auth-shell">
+    <div class="auth-card">
+        <p class="eyebrow">Something went wrong</p>
+        <h1>Error</h1>
+        <p th:text="${message != null ? message : 'Please go back and try again.'}"></p>
+        <a class="btn btn-primary btn-full" th:href="@{/dashboard}">Go to Dashboard</a>
+    </div>
+</div>
+</body>
+</html>

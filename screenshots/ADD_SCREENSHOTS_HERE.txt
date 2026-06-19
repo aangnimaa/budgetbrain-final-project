@@ -1,0 +1,10 @@
+Take screenshots after running the app and save them here with these names:
+
+landing-page.png
+register-page.png
+login-page.png
+dashboard.png
+finance-records.png
+receipt-upload.png
+budgets.png
+savings-goals.png

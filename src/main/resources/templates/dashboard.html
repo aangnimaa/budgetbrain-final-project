@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | BudgetBrain</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<nav class="topbar">
+    <a class="brand" th:href="@{/dashboard}"><span class="logo">₩</span> BudgetBrain</a>
+    <div class="nav-links">
+        <a class="active" th:href="@{/dashboard}">Dashboard</a>
+        <a th:href="@{/records}">Records</a>
+        <a th:href="@{/budgets}">Budgets</a>
+        <a th:href="@{/goals}">Goals</a>
+        <form th:action="@{/logout}" method="post" class="logout-form">
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+            <button type="submit">Logout</button>
+        </form>
+    </div>
+</nav>
+
+<main class="container">
+    <section class="page-heading dashboard-heading">
+        <div>
+            <p class="eyebrow">Finance dashboard</p>
+            <h1>Welcome, <span th:text="${fullName}">User</span></h1>
+            <p>Review your income, expenses, budgets, and savings goals from one place.</p>
+        </div>
+        <a class="btn btn-primary" th:href="@{/records/new}">+ Add Transaction</a>
+    </section>
+
+    <section class="stats-grid">
+        <div class="stat-card balance">
+            <span>Balance</span>
+            <strong th:text="|₩${balance}|">₩0</strong>
+            <small>Income minus expenses</small>
+        </div>
+        <div class="stat-card">
+            <span>Total Income</span>
+            <strong th:text="|₩${income}|">₩0</strong>
+            <small>All income records</small>
+        </div>
+        <div class="stat-card">
+            <span>Total Expenses</span>
+            <strong th:text="|₩${expenses}|">₩0</strong>
+            <small>All expense records</small>
+        </div>
+        <div class="stat-card">
+            <span>Saved Amount</span>
+            <strong th:text="|₩${totalSaved}|">₩0</strong>
+            <small>Across savings goals</small>
+        </div>
+    </section>
+
+    <section class="dashboard-grid">
+        <div class="panel">
+            <div class="panel-head">
+                <div>
+                    <p class="eyebrow">Latest activity</p>
+                    <h2>Recent Records</h2>
+                </div>
+                <a th:href="@{/records}">View all</a>
+            </div>
+            <div th:if="${#lists.isEmpty(recentRecords)}" class="empty-box">No records yet. Add your first transaction.</div>
+            <div class="activity-list" th:if="${!#lists.isEmpty(recentRecords)}">
+                <a class="activity-item" th:each="record : ${recentRecords}" th:href="@{'/records/' + ${record.id}}">
+                    <div>
+                        <strong th:text="${record.title}">Lunch</strong>
+                        <small th:text="|${record.category} • ${record.recordDate}|"></small>
+                    </div>
+                    <span th:if="${record.type.name() == 'INCOME'}" class="income" th:text="|+₩${record.amount}|"></span>
+                    <span th:if="${record.type.name() == 'EXPENSE'}" class="expense" th:text="|-₩${record.amount}|"></span>
+                </a>
+            </div>
+        </div>
+
+        <div class="panel goals-panel">
+            <div class="panel-head">
+                <div>
+                    <p class="eyebrow">Progress</p>
+                    <h2>Savings Goals</h2>
+                </div>
+                <a th:href="@{/goals}">Manage</a>
+            </div>
+            <div th:if="${#lists.isEmpty(goals)}" class="empty-box">No savings goals yet.</div>
+            <div class="goal-mini" th:each="goal : ${goals}">
+                <div class="goal-top">
+                    <strong th:text="${goal.name}">Laptop</strong>
+                    <span th:text="|${goal.progressPercent}%|"></span>
+                </div>
+                <div class="progress"><span th:style="|width:${goal.progressPercent}%|"></span></div>
+                <small th:text="|₩${goal.savedAmount} saved of ₩${goal.targetAmount}|"></small>
+            </div>
+            <div class="budget-note">
+                <strong th:text="|₩${totalBudget}|"></strong>
+                <span>Total planned budget</span>
+            </div>
+        </div>
+    </section>
+</main>
+</body>
+</html>
