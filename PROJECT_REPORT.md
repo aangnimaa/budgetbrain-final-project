@@ -6,9 +6,9 @@
 
 ## 2. Team Members
 
-- Student 1:Nima Sherpa ______________________
-- Student 2:Sunil Lama ______________________
-- Student 3:Suvakar Dahal ______________________
+- Student 1: Nima Sherpa 
+- Student 2: Sunil Lama 
+- Student 3: Suvakar Dahal 
 
 ## 3. Project Overview
 
