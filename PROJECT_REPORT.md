@@ -128,41 +128,7 @@ Stores savings goal information.
 | created_at | Created timestamp |
 | user_id | Owner user foreign key |
 
-## 7. Screenshots
 
-Add your screenshots here before submission.
-
-### 7.1 Landing Page
-
-![Landing Page](screenshots/landing-page.png)
-
-### 7.2 Register Page
-
-![Register Page](screenshots/register-page.png)
-
-### 7.3 Login Page
-
-![Login Page](screenshots/login-page.png)
-
-### 7.4 Dashboard
-
-![Dashboard](screenshots/dashboard.png)
-
-### 7.5 Finance Records
-
-![Finance Records](screenshots/finance-records.png)
-
-### 7.6 Receipt Upload
-
-![Receipt Upload](screenshots/receipt-upload.png)
-
-### 7.7 Budgets
-
-![Budgets](screenshots/budgets.png)
-
-### 7.8 Savings Goals
-
-![Savings Goals](screenshots/savings-goals.png)
 
 ## 8. Development Process
 
